@@ -1,0 +1,31 @@
+# the .yml file name will be used for the COPY INTO Snowflake from a named external s3 stage
+# name this file "{your snowflake stage object name}.yml"
+
+
+source:
+  external_stage: snowflake_named_external_stage                  # named snowflake external stage
+  s3_bucket: "s3-bucket-name"                                     # bucket name
+  prefix: "snowflake_table_name/{year}-{month}-{day}"             # Snowflake table name with partition by values year, month, day
+  pattern_string: ".*csv.gz.*"                                    # COPY INTO will execute a csv gzip file
+  range:                                                          #scan of the lookback to validate we have new files for
+    - range_type: day
+    - increment: 1
+target:
+  database: "snowflake_db"                                        # name of your Snowflake database
+  schema: stage                                                   # Snowflake schema
+  table: snowflake_table_name                                     # Snowflake table name
+  enforce_length: False
+details:
+    file_type: CSV
+    truncate: True
+    delimiter: ","
+    headers: True
+columns:
+  - target: col1
+    source: 1
+  - target: col2
+    source: 2
+  - target: col3
+    source: 3
+  - target: col4
+    source: 4
