@@ -1,2 +1,2 @@
 # turbo-pipe
-Snowflake analytics pipeline using `turbodbc` 
+Snowflake analytics pipeline on ECS using `turbodbc` to connect to MS SQL Server
