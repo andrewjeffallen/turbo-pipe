@@ -1,2 +1,2 @@
 # turbo-pipe
-Snowflake analytics pipeline using simple libraries
+Snowflake analytics pipeline using `turbodbc` 
