@@ -53,7 +53,7 @@ logger.setLevel(logging.INFO)
 load_date = date.today().strftime("%Y-%m-%d")
 
 args = {
-    "owner": "audience-measurement",
+    "owner": "my_name",
     "start_date": datetime(2020, 5, 1),
     "load_date": load_date,
     "params": dag_params,
