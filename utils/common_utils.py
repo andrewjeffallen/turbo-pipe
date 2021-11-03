@@ -1,46 +1,20 @@
-"""
-Purpose: Contain & control common utility functions
-"""
 
 import boto3
 import base64
 from botocore.exceptions import ClientError
-import jinja2
-from dateutil.tz import tzutc
-import logging
-import re
-import os
-from collections import ChainMap
-import yaml
-from datetime import datetime, timedelta
-import time
-
 import json
 
-from airflow.hooks.base_hook import BaseHook
-from airflow.models import Variable
-
-#from utils.snowflake import run_query
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
 
 
 def get_aws_session():
-
     return boto3.session.Session()
 
 def get_secret(secret_name):
-
     region_name = "aws-region"
 
     # Create a Secrets Manager client
     session = get_aws_session()
     client = session.client(service_name="secretsmanager", region_name=region_name)
-
-    # In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
-    # See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-    # We rethrow the exception by default.
 
     try:
         get_secret_value_response = client.get_secret_value(SecretId=secret_name)
